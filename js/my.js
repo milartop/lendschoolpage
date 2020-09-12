@@ -10616,6 +10616,7 @@ $(document).ready(function () {
   // end burger menu 
 
 
+
   // аккордеон
   $(".part > span").on("click", function () {
     if ($(this).hasClass("active")) {
@@ -10652,6 +10653,7 @@ $(document).ready(function () {
           centerMode: false,
           centerPadding: '0px',
           slidesToShow: 2,
+
         }
       },
       {
@@ -10659,6 +10661,7 @@ $(document).ready(function () {
         settings: {
           infinite: true,
           arrows: false,
+
           slidesToShow: 2,
         }
       },
@@ -10670,6 +10673,7 @@ $(document).ready(function () {
 
           slidesToShow: 1,
         }
+
       }
     ]
   });
@@ -10681,49 +10685,42 @@ $(document).ready(function () {
   $('.slider-comment').slick({
     dots: false,
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: true,
-    variableWidth: false,
-    focusOnSelect: true,
+    prevArrow: '<button type="button" class=" slick-arrow slick-next"><img src="./img/gallery/arrow-right1.png"></button">',
+    nextArrow: '<button type="button" class=" slick-arrow slick-prev"><img src="./img/gallery/arrow-left1.png"></button>',
     speed: 700,
     responsive: [{
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
         breakpoint: 1000,
         settings: {
-          slidesToShow: 3,
+          dots: true,
+          arrows: false,
+          slidesToShow: 2,
           slidesToScroll: 1,
+
         }
       },
       {
         breakpoint: 767,
         settings: {
+          dots: true,
+          arrows: false,
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false
+
         }
       }
     ]
   });
 
-  $('.faq-wrap .item .tit').click(function (event) {
-    if ($(this).hasClass('active')) {
-      $(this).removeClass('active');
-      $(this).parent().children('.item-content').slideUp();
-    } else {
-      $(this).addClass('active');
-      $(this).parent().children('.item-content').slideDown();
-    }
-  });
 
-
-  $('.slick-feedback').slick({
-    infinite: true,
-    slidesToShow: 5,
-    prevArrow: '<button type="button" class="slick-next"><img src="./img/features/arrow-right-solid.svg"></button">',
-    nextArrow: '<button type="button" class="slick-prev"><img src="./img/features/arrow-left-solid.svg"></button>',
-    centerMode: true,
-
-  });
   // ------------------------------------------------end slick slick-feedback
 
 
@@ -10744,15 +10741,26 @@ $(document).ready(function () {
     nextArrow: '<button type="button" class=" slick-arrow slick-prev"><img src="./img/gallery/arrow-left1.png"></button>',
     speed: 700,
     responsive: [{
-      breakpoint: 500,
+      breakpoint: 767,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: false,
         variableWidth: false,
       }
+    }, {
+      breakpoint: 450,
+      settings: {
+        dots: true,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+
+      }
     }]
   });
+
+
 });
 
 // слайдер partners
@@ -10761,12 +10769,12 @@ $('.slick-partners').slick({
   infinite: true,
   slidesToShow: 5,
   slidesToScroll: 1,
-  adaptiveHeight: true,
   prevArrow: '<button type="button" class=" slick-arrow slick-next"><img src="./img/partners/arrow-right2.png"></button">',
   nextArrow: '<button type="button" class=" slick-arrow slick-prev"><img src="./img/partners/arrow-left2.png"></button>',
   responsive: [{
       breakpoint: 1050,
       settings: {
+
         slidesToShow: 3,
         slidesToScroll: 3,
       }
@@ -10794,6 +10802,28 @@ $('.slick-partners').slick({
 // конец слайдер partners
 
 
+
+//меню из инпутов radio вертикальное (фиксированное)
+
+
+document.querySelectorAll('.header-input-block').forEach(function (section) {
+  section.addEventListener('click', function () {
+
+    document.querySelectorAll('.header-input-w').forEach(function (sec) {
+      sec.classList.add('hedernone')
+    })
+
+    document.querySelectorAll('.header-input-hide').forEach(function (sec) {
+      sec.classList.add('hedernone')
+    });
+
+    section.childNodes[1].classList.remove('hedernone');
+    section.childNodes[5].classList.remove('hedernone');
+  });
+});
+//конец меню из инпутов radio вертикальное (фиксированное)
+
+
 // flag код флагов ru и ua 
 const flagRu = document.querySelector('.flag-icon-ru');
 const flagUa = document.querySelector('.flag-icon-ua');
@@ -10810,14 +10840,15 @@ pointFlag.addEventListener('click', flagFun);
 
 function flagRus() {
   flagUa.style.display = 'none';
+
 }
 flagRu.addEventListener('click', flagRus);
 
 function flagUas() {
   flagRu.style.display = 'none';
+
 }
 flagUa.addEventListener('click', flagUas);
-
 
 
 //------------------------ попап ------------------
@@ -10827,6 +10858,7 @@ let popap = document.querySelector('.popap ');
 let planBtn = document.querySelector('#plan-btn-one');
 let planBtnTwo = document.querySelector('#plan-btn-two');
 let planBtnThree = document.querySelector('#plan-btn-three');
+let feedbackBtn = document.querySelector('.feedback-btn');
 
 function closeFunc() {
   popap.style.marginLeft = '-100%';
@@ -10841,5 +10873,6 @@ closeBtn.addEventListener('click', closeFunc);
 planBtnThree.addEventListener('click', closeFunc);
 planBtn.addEventListener('click', openFunc);
 planBtnTwo.addEventListener('click', openFunc);
+feedbackBtn.addEventListener('click', openFunc);
 
 //------------------------ конец попап ------------------
